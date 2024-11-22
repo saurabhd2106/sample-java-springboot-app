@@ -19,12 +19,6 @@ pipeline {
             }
         }
 
-        stage("Build, Test and Package"){
-            steps {
-                sh 'mvn package'
-            }
-        }
-
         stage("Sonar Scan"){
             steps {
                 withSonarQubeEnv('ec2-server') {
@@ -32,6 +26,14 @@ pipeline {
                 }
             }
         }
+
+        stage("Build, Test and Package"){
+            steps {
+                sh 'mvn package'
+            }
+        }
+
+        
     }
 
     post {
