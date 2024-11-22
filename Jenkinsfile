@@ -24,6 +24,14 @@ pipeline {
                 sh 'mvn package'
             }
         }
+
+        stage("Build, Test and Package"){
+            steps {
+                withSonarQubeEnv() {
+      sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sample-java-project -Dsonar.projectName='sample-java-project'"
+    }
+            }
+        }
     }
 
     post {
