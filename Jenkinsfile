@@ -1,3 +1,5 @@
+@Library('mvnlibrary')
+
 pipeline {
 
     agent {
@@ -9,7 +11,12 @@ pipeline {
     stages {
         stage("Verify Maven"){
             steps {
-                sh 'mvn --version'
+
+                verifymvnversion()
+
+                helloworld('world, Saurabh')
+
+                //sh 'mvn --version'
             }
         }
 
