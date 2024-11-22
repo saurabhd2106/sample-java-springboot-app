@@ -12,6 +12,28 @@ pipeline {
                 sh 'mvn --version'
             }
         }
+
+        stage("Clean"){
+            steps {
+                sh 'mvn clean'
+            }
+        }
+
+        stage("Build, Test and Package"){
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+
+    post {
+        always {
+            jnuit '**/target/surefire-reports/TEST-*.xml'
+        }
+
+        success {
+            archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+        }
     }
 
 }
