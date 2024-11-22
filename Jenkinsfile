@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage("Build, Test and Package"){
+        stage("Sonar Scan"){
             steps {
                 withSonarQubeEnv('ec2-server') {
                     sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sample-java-project -Dsonar.projectName='sample-java-project'"
