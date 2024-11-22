@@ -27,9 +27,9 @@ pipeline {
 
         stage("Build, Test and Package"){
             steps {
-                withSonarQubeEnv() {
-      sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sample-java-project -Dsonar.projectName='sample-java-project'"
-    }
+                withSonarQubeEnv('ec2-server') {
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sample-java-project -Dsonar.projectName='sample-java-project'"
+                }
             }
         }
     }
