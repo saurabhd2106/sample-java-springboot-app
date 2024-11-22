@@ -16,6 +16,13 @@ pipeline {
 
                 helloworld('world, Saurabh')
 
+                script {
+
+                    def message = sample.Helper.greet("Saurabh")
+
+                    echo message
+                }
+
                 //sh 'mvn --version'
             }
         }
